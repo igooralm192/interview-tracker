@@ -6,9 +6,11 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './features/user/user.module';
 import { InterviewModule } from './features/interview/interview.module';
 import { DbModule } from './db/db.module';
+import { AuthModule } from './features/auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
