@@ -6,7 +6,8 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './features/user/user.module';
 import { InterviewModule } from './features/interview/interview.module';
 import { DbModule } from './db/db.module';
-import { AuthModule } from './features/auth/auth.module';
+import { AuthModule } from './auth/auth.module';
+import { GraphQLContext } from './types/graphql.context';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { AuthModule } from './features/auth/auth.module';
       autoSchemaFile: true,
       sortSchema: true,
       playground: process.env.NODE_ENV !== 'production',
+      context: ({ req }: GraphQLContext): GraphQLContext => ({ req }),
     }),
     UserModule,
     InterviewModule,

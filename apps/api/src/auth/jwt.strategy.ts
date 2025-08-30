@@ -24,8 +24,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     // This is the decoded JWT payload
     return {
       userId: payload.sub,
-      email: payload.email,
-      permissions: payload.permissions || [],
     };
   }
 }
