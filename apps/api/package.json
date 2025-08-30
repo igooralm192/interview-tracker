@@ -88,6 +88,8 @@
     "@nestjs/config": "^4.0.2",
     "@nestjs/graphql": "^13.1.0",
     "@nestjs/passport": "^11.0.5",
+    "@sentry/nestjs": "^10.8.0",
+    "@sentry/profiling-node": "^10.8.0",
     "dotenv": "^17.2.1",
     "drizzle-orm": "^0.44.5",
     "graphql": "^16.11.0",

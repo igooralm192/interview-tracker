@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
+import { SentryModule } from '@sentry/nestjs/setup';
 
 import { UserModule } from './features/user/user.module';
 import { InterviewModule } from './features/interview/interview.module';
@@ -19,10 +20,11 @@ import { GraphQLContext } from './types/graphql.context';
       playground: process.env.NODE_ENV !== 'production',
       context: ({ req }: GraphQLContext): GraphQLContext => ({ req }),
     }),
+    DbModule,
     UserModule,
     InterviewModule,
     ConfigModule.forRoot(),
-    DbModule,
+    SentryModule.forRoot(),
   ],
 })
 export class AppModule {}
