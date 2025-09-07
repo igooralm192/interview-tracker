@@ -1,20 +1,21 @@
 import { Context, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { UseGuards } from '@nestjs/common';
+import { Inject, UseGuards } from '@nestjs/common';
 import * as Sentry from '@sentry/nestjs';
+import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 
-import { InterviewRepository } from './interview.repository';
 import { Interview } from './interview.model';
 import { AuthGuard } from '../../auth/auth.guard';
 import type { GraphQLContext } from '../../types/graphql.context';
+import { interviewsTable } from './interview.schema';
 
 @Resolver(() => Interview)
 export class InterviewResolver {
-  constructor(private readonly interviewRepository: InterviewRepository) {}
+  constructor(@Inject('DRIZZLE_DB') private readonly db: NodePgDatabase) {}
 
   @UseGuards(AuthGuard)
   @Query(() => [Interview])
   async interviews(@Context() ctx: GraphQLContext): Promise<Interview[]> {
-    return this.interviewRepository.findAll();
+    return this.db.select().from(interviewsTable);
   }
 
   @UseGuards(AuthGuard)

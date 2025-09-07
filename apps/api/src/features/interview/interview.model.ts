@@ -1,7 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 export type InterviewContactType = 'active' | 'passive';
-
 export type InterviewPriority = 'low' | 'medium' | 'high';
 
 @ObjectType()

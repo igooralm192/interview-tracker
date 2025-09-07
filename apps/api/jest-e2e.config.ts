@@ -1,3 +1,5 @@
+
+
 /* eslint-disable */
 import { readFileSync } from 'fs';
 import type { Config } from 'jest';
@@ -18,5 +20,8 @@ export default {
     '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig]
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: 'test-output/jest/coverage'
+  coverageDirectory: 'test-output/jest/coverage',
+  testRegex: '.+\\.e2e-spec\\.[tj]s$',
 } as Config;
+
+
