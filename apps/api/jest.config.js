@@ -1,8 +1,5 @@
-
-
 /* eslint-disable */
-import { readFileSync } from 'fs';
-import type { Config } from 'jest';
+const { readFileSync } = require('fs');
 // Reading the SWC compilation config for the spec files
 const swcJestConfig = JSON.parse(
   readFileSync(`${__dirname}/.spec.swcrc`, 'utf-8')
@@ -12,16 +9,13 @@ const swcJestConfig = JSON.parse(
 swcJestConfig.swcrc = false;
 const jestPreset = require('../../jest.preset.js').default;
 
-export default {
+module.exports = {
   ...jestPreset,
   displayName: '@interview-tracker/api',
   testEnvironment: 'node',
   transform: {
-    '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig]
+    '^.+\\.[tj]s$': ['@swc/jest', swcJestConfig],
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: 'test-output/jest/coverage',
-  testRegex: '.+\\.e2e-spec\\.[tj]s$',
-} as Config;
-
-
+};

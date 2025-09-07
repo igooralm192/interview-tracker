@@ -1,0 +1,5 @@
+{
+  "jest.rootPath": "./apps/api",
+  "jest.jestCommandLine": "npx jest -c ./jest-e2e.config.js",
+  "jest.runMode": "on-demand"
+}
